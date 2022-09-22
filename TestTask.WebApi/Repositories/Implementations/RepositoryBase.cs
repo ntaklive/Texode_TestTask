@@ -24,7 +24,16 @@ public abstract class RepositoryBase<T> : IRepository<T>
             throw new InvalidOperationException("An element with the same id already exists in the repository");
         }
 
-        value.Id = GetAll().Max(x => x.Id) + 1;
+        var items = GetAll();
+
+        if (!items.Any())
+        {
+            value.Id = 1;
+        }
+        else
+        {
+            value.Id = GetAll().Max(x => x.Id) + 1;
+        }
         
         RepositoryContext.Set<T>().Add(value);
     }
