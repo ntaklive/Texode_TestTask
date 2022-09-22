@@ -1,0 +1,37 @@
+<UserControl x:Class="TestTask.Wpf.Views.CardDeleteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TestTask.Wpf.Views"
+             xmlns:viewModels="clr-namespace:TestTask.Wpf.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <d:Page.DataContext>
+        <viewModels:CardDeleteViewModel />
+    </d:Page.DataContext>
+
+    <StackPanel VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+        <TextBlock VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Are you sure?"
+                   FontWeight="Bold" />
+        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+            <Button Margin="0,0,5,0"
+                    Style="{StaticResource FlatButtonStyle}"
+                    Foreground="White"
+                    Command="{Binding Path=CancelCommand}"
+                    Content="No"/>
+            <Button Style="{StaticResource FlatButtonStyle}"
+                    Foreground="White"
+                    Command="{Binding Path=DeleteCardCommand}"
+                    Content="Yes, delete">
+                <Button.Background>
+                    <SolidColorBrush Color="{StaticResource WarningNormalColor}" />
+                </Button.Background>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

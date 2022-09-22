@@ -1,0 +1,71 @@
+<UserControl x:Class="TestTask.Wpf.Views.CardPreviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:TestTask.Wpf.ViewModels"
+             mc:Ignorable="d">
+
+    <d:Page.DataContext>
+        <viewModels:CardPreviewViewModel />
+    </d:Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+            Orientation="Horizontal"
+            Height="25">
+            <Button Style="{StaticResource FlatButtonStyle}"
+                    Padding="5,0"
+                    Command="{Binding Path=DataContext.ShowEditCardViewCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+                <Button.Background>
+                    <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
+                </Button.Background>
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="{DynamicResource BorderDarkColor}" />
+                </Button.BorderBrush>
+                <Button.Content>
+                    <Viewbox Width="18" Height="18">
+                        <Canvas Width="23" Height="23">
+                            <Path Fill="White"
+                                  Data="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                        </Canvas>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource FlatButtonStyle}"
+                    Padding="5,0"
+                    Command="{Binding Path=DataContext.ShowDeleteCardViewCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+                <Button.Background>
+                    <SolidColorBrush Color="{DynamicResource WarningLighterColor}" />
+                </Button.Background>
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="{DynamicResource BorderDarkColor}" />
+                </Button.BorderBrush>
+                <Button.Content>
+                    <Viewbox Width="18" Height="18">
+                        <Canvas Width="23" Height="23">
+                            <Path Fill="Black"
+                                  Data="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
+                        </Canvas>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <Image MaxHeight="200"
+                   Margin="0, 0, 0, 10"
+                   Source="{Binding Path=CardViewModel.ImageUrl}" />
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Text="{Binding Path=CardViewModel.Label}" />
+        </StackPanel>
+    </Grid>
+
+
+</UserControl>
